@@ -1,4 +1,4 @@
-kflash, A Python-based Kendryte K210 UART ISP Utility
+A Python-based Kendryte K210 UART ISP Utility
 =====================================================
 
 Usage
@@ -6,10 +6,11 @@ Usage
 
 .. code:: bash
 
-    # kflash --help
-    usage: kflash [-h] [-p PORT] [-f FLASH] [-b BAUDRATE] [-l BOOTLOADER]
-                    [-k KEY] [-v] [-t] [-n] [-s] [-B BOARD] [-S SLOW]
-                    firmware
+    # python3 kflash.py -h
+    usage: kflash.py [-h] [-p PORT] [-f FLASH] [-b BAUDRATE] [-l BOOTLOADER] [-k KEY]
+                 [-v] [--verbose] [-t] [-n] [-s]
+                 [-B {kd233,dan,bit,bit_mic,goE,goD,maixduino,trainer}] [-S SLOW]
+                 firmware
 
     positional arguments:
     firmware              firmware bin path
@@ -18,20 +19,31 @@ Usage
     -h, --help            show this help message and exit
     -p PORT, --port PORT  COM Port
     -f FLASH, --flash FLASH
-                            SPI Flash type, 0 for SPI3, 1 for SPI0
+                        SPI Flash type, 0 for SPI3, 1 for SPI0
     -b BAUDRATE, --baudrate BAUDRATE
-                            UART baudrate for uploading firmware
+                        UART baudrate for uploading firmware
     -l BOOTLOADER, --bootloader BOOTLOADER
-                            bootloader bin path
+                        Bootloader bin path
     -k KEY, --key KEY     AES key in hex, if you need encrypt your firmware.
-    -v, --verbose         increase output verbosity
+    -v, --version         Print version.
+    --verbose             Increase output verbosity
     -t, --terminal        Start a terminal after finish (Python miniterm)
     -n, --noansi          Do not use ANSI colors, recommended in Windows CMD
     -s, --sram            Download firmware to SRAM and boot
-    -B BOARD, --Board BOARD
-                            Select dev board, e.g. kd233, dan, bit, goD, goE or
-                            trainer
+    -B {kd233,dan,bit,bit_mic,goE,goD,maixduino,trainer}, --Board {kd233,dan,bit,bit_mic,goE,goD,maixduino,trainer}
+                          Select dev board
     -S SLOW, --Slow SLOW  Slow download mode
+
+Usage
+---------
+
+To upload M5StickV_Firmware, for updating your board ``maixduino`` with specified port (e.g. ``/deb/ttyUSB0``) and optional incuding view all information:
+
+.. code:: bash
+
+    python3 kflash.py -p /dev/ttyUSB0 -b 115200 --verbose -B maixduino M5StickV_Firmware_v5.1.2.kfpkg
+
+
 
 Attention
 ---------
